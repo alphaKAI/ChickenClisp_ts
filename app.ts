@@ -1,3 +1,5 @@
+/// <reference path="./Engine.d.ts" />
+
 // app
 import {Engine} from "./Engine";
 

@@ -3,6 +3,9 @@ import {IOperator} from "./operator/IOperator";
 import {CallOperator} from "./expression/CallOperator";
 import {ImmediateValue} from "./expression/ImmediateValue";
 
+/**
+ * Operators
+ */
 import {AddOperator} from "./operator/AddOperator";
 import {SubOperator} from "./operator/SubOperator";
 import {MulOperator} from "./operator/MulOperator";
@@ -16,6 +19,7 @@ import {IfOperator} from "./operator/IfOperator";
 import {NotOperator, AndOperator, OrOperator} from "./operator/LogicOperator";
 import {PrintOperator} from "./operator/PrintOperator";
 import {DeffunOperator} from "./operator/DeffunOperator";
+import {WhileOperator} from "./operator/WhileOperator";
 
 export class Engine {
   public operators: {[key: string]: IOperator} = {};
@@ -39,6 +43,7 @@ export class Engine {
     this.operators["||"] = new OrOperator();
     this.operators["print"] = new PrintOperator();
     this.operators["def"] = new DeffunOperator();
+    this.operators["while"] = new WhileOperator();
   }
 
   /**
