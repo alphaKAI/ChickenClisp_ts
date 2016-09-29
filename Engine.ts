@@ -13,6 +13,7 @@ import {AddOperator} from "./operator/AddOperator";
 import {SubOperator} from "./operator/SubOperator";
 import {MulOperator} from "./operator/MulOperator";
 import {DivOperator} from "./operator/DivOperator";
+import {ModOperator} from "./operator/ModOperator";
 import {EqualOperator, LessOperator, GreatOperator, LEqOperator, GEqOperator} from "./operator/EqualOperator";
 import {GetOperator} from "./operator/GetOperator";
 import {SetOperator} from "./operator/SetOperator";
@@ -43,6 +44,7 @@ export class Engine {
     this.operators["-"] = new SubOperator();
     this.operators["*"] = new MulOperator();
     this.operators["/"] = new DivOperator();
+    this.operators["%"] = new ModOperator();
     this.operators["="] = new EqualOperator();
     this.operators["<"] = new LessOperator();
     this.operators[">"] = new GreatOperator();
