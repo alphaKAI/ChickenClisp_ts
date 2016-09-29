@@ -23,6 +23,7 @@ var x = engine.eval(
 /**
  * S Expression
  */
+// loop 10 times and square 10
 var code: string = `
 (step
   (def square (x)
@@ -30,12 +31,27 @@ var code: string = `
       (set y (* (get x) (get x)))
       (set z (* (get x) (get x)))
       (* (get y) (get z))))
-  (set x 0)
-  (while (< (get x) 10)
+  (set x 1)
+  (while (< (get x) 11)
     (step
       (print (get x))
       (set x (+ (get x) 1))))
   (print (square 10)))
 `;
+
+// sum 1 to 10
+var code2: string = `
+(step
+  ; abc
+  (set sum 0)
+  (set i 1)
+  (while (<= (get i) 10)
+    (step
+      (set sum (+ (get sum) (get i)))
+      (set i (+ (get i) 1))))
+  (print (get sum)))
+`;
+
 engine.eval(transpiler.transpile(code));
+engine.eval(transpiler.transpile(code2));
 // Lisp(S expression) to JSON Array (Internal Expression of Orelang_TS) 
