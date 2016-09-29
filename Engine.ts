@@ -1,3 +1,6 @@
+/**
+ * Premitive Interfaces and Value Classes
+ */
 import {IExpression} from "./expression/IExpression";
 import {IOperator} from "./operator/IOperator";
 import {CallOperator} from "./expression/CallOperator";
@@ -21,8 +24,18 @@ import {PrintOperator} from "./operator/PrintOperator";
 import {DeffunOperator} from "./operator/DeffunOperator";
 import {WhileOperator} from "./operator/WhileOperator";
 
+/**
+ * Script Engine of Orelang_TS
+ */
 export class Engine {
+  /**
+   * This holds Operators as a hash table by string key.
+   */
   public operators: {[key: string]: IOperator} = {};
+  /**
+   * This holds global variables.
+   * Current Orelang_TS provides global varibale only.
+   */
   public variables: {[key: string]: Object} = {};
 
   constructor() {
@@ -47,7 +60,7 @@ export class Engine {
   }
 
   /**
-   * eval
+   * Evalute Object
    */
   public eval(script: Object): Object {
     return this.getExpression(script).eval(this);
@@ -55,6 +68,7 @@ export class Engine {
 
   /**
    * getExpression
+   * Build Script Tree
    */
   public getExpression(script: Object): IExpression {
     if (script instanceof Array) {

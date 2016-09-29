@@ -3,7 +3,7 @@ import {IOperator} from "../operator/IOperator";
 
 export class UntilOperator implements IOperator {
   /**
-   * call
+   * Loop while the condition is false
    */
   public call(engine: Engine, args: Array<any>): Object {
     var ret: Object = null;
