@@ -9,25 +9,28 @@ export class Transpiler {
    */
   transpile(code: string): JSON {
     code = code
-            .replace(/\(/g, "[")
-            .replace(/\)/g, "]")
-            .replace(/\n/g, "")
-            .replace(/(\<\=?)/g, "\"$1\"")
-            .replace(/(\>\=?)/g, "\"$1\"")
-            .replace(/(?!\<|\>)\=/g, "\"=\"")
-            .replace(/\+/g, "\"+\"")
-            .replace(/\-/g, "\"-\"")
-            .replace(/\*/g, "\"*\"")
-            .replace(/\//g, "\"/\"")
-            .replace(/\!/g, "\"!\"")
-            .replace(/\|\|/g, "\"||\"")
-            .replace(/&&/g, "\"&&\"")
-            .replace(/\s\s+/g, " ")
-            .split(" ").join(", ")
-            .replace(/,\s\]/g, "]")
-            .replace(/\[(?!\")(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)/g, "[\"$1\"")
-            .replace(/\s(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)\s/g, "\"$1\"")
-            .replace(/,\s(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)/g, ", \"$1\"");
+            .replace(/\(/g, "[")// ( -> [
+            .replace(/\)/g, "]")// ( -> ]
+            .replace(/;.*/g, "")// remove comments
+            .replace(/\n/g, "")// remove line return
+            .replace(/\=/g, "\"=\"")// escape =
+            .replace(/(\<)/g, "\"$1\"")// escape <
+            .replace(/(\>)/g, "\"$1\"")// escape >
+            .replace(/(\"\<\"\"\=\")/g, "\"<=\"")// fix "<""="" -> "<="
+            .replace(/(\"\>\"\"\=\")/g, "\">=\"")//fix ">""=" -> ">="
+            .replace(/\+/g, "\"+\"")// escape +
+            .replace(/\-/g, "\"-\"")// escape -
+            .replace(/\*/g, "\"*\"")// escape *
+            .replace(/\//g, "\"/\"")// escape /
+            .replace(/\!/g, "\"!\"")// escape !
+            .replace(/\|\|/g, "\"||\"")// escape ||
+            .replace(/&&/g, "\"&&\"")// escape &&
+            .replace(/\s\s+/g, " ")// folds spaces into one space
+            .split(" ").join(", ")// join by space with ,
+            .replace(/,\s*\]/g, "]")// remove comma of last elements [a, b, c,] -> [a, b, c
+            .replace(/\[(?!\")(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)/g, "[\"$1\"")// escape symbols
+            .replace(/\s(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)\s/g, "\"$1\"")// escape symbols
+            .replace(/,\s(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)/g, ", \"$1\"");// escape symbols
       return JSON.parse(code);
     }
 }
