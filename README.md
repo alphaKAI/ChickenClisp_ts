@@ -26,8 +26,10 @@ This looks like lisp.
   
 # Implementation
 Original implementation of Orelang in Java uses JSON and JSONIC for Syntax Analysis.  
-I implement this interpreter like original one(but this is very temporary, I'll implement transpile driver to code like Lisp).    
-
+You can write like Lisp(S-Expression) with trainspiler.  
+Orelang\_TS provides a transpiler which converts S-Expression into internal expression of Orelang\_TS(JSON Array).  
+  
+  
 # Installation
 ## Requirements
 
@@ -39,7 +41,7 @@ I implement this interpreter like original one(but this is very temporary, I'll 
 ```zsh:
 $ git clone https://github.com/alphaKAI/Orelang_TS
 $ cd Orelang_TS
-$ typings install dt~node -global
+$ typings install dt~node --global
 $ tsc app.ts
 ```
 
