@@ -40,7 +40,9 @@ export class Engine {
 
   constructor() {
     this.operators["+"] = new AddOperator();
+    this.operators["-"] = new SubOperator();
     this.operators["*"] = new MulOperator();
+    this.operators["/"] = new DivOperator();
     this.operators["="] = new EqualOperator();
     this.operators["<"] = new LessOperator();
     this.operators[">"] = new GreatOperator();
