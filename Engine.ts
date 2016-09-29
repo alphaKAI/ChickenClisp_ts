@@ -24,6 +24,8 @@ import {NotOperator, AndOperator, OrOperator} from "./operator/LogicOperator";
 import {PrintOperator} from "./operator/PrintOperator";
 import {DeffunOperator} from "./operator/DeffunOperator";
 import {WhileOperator} from "./operator/WhileOperator";
+import {GetfunOperator} from "./operator/GetfunOperator";
+import {DynamicOperator} from "./operator/DynamicOperator";
 
 /**
  * Script Engine of Orelang_TS
@@ -61,6 +63,7 @@ export class Engine {
     this.operators["print"] = new PrintOperator();
     this.operators["def"] = new DeffunOperator();
     this.operators["while"] = new WhileOperator();
+    this.operators["get_fun"] = new GetfunOperator();
   }
 
   /**
@@ -77,6 +80,10 @@ export class Engine {
   public getExpression(script: Object): IExpression {
     if (script instanceof Array) {
       var scriptList:Array<any> = script;
+      if (scriptList[0] instanceof Array) {
+        var ret = new CallOperator(this.operators[scriptList[0][0]], scriptList[0].slice(1));
+        return new ImmediateValue((<IOperator>ret.eval(this)).call(this, scriptList.slice(1)) );
+      }
       return new CallOperator(this.operators[scriptList[0]], scriptList.slice(1));
     } else {
       return new ImmediateValue(script);

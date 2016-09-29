@@ -28,9 +28,9 @@ export class Transpiler {
             .replace(/\s\s+/g, " ")// folds spaces into one space
             .split(" ").join(", ")// join by space with ,
             .replace(/,\s*\]/g, "]")// remove comma of last elements [a, b, c,] -> [a, b, c
-            .replace(/\[(?!\")(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)/g, "[\"$1\"")// escape symbols
-            .replace(/\s(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)\s/g, "\"$1\"")// escape symbols
-            .replace(/,\s(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9])*)/g, ", \"$1\"");// escape symbols
+            .replace(/\[(?!\")(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9]|_)*)/g, "[\"$1\"")// escape symbols
+            .replace(/\s(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9]|_)*)\s/g, "\"$1\"")// escape symbols
+            .replace(/,\s(([a-z]|[A-Z]|_)([a-z]|[A-Z]|[0-9]|_)*)/g, ", \"$1\"");// escape symbols
       return JSON.parse(code);
     }
 }
