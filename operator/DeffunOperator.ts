@@ -38,8 +38,8 @@ export class DeffunOperator implements IOperator {
         if (targ.length > 1) {
           engine.eval(targ);
         }
-        
-        return engine.eval(["step", this.funcBody]);
+
+        return engine.eval(this.funcBody);
       }
     }
 

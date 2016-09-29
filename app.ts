@@ -26,17 +26,16 @@ var x = engine.eval(
 var code: string = `
 (step
   (def square (x)
-    (* (get x) (get x))
-  )
+    (step
+      (set y (* (get x) (get x)))
+      (set z (* (get x) (get x)))
+      (* (get y) (get z))))
   (set x 0)
   (while (< (get x) 10)
     (step
       (print (get x))
-      (set x (+ (get x) 1))
-    )
-  )
-  (print (square 10))
-)
+      (set x (+ (get x) 1))))
+  (print (square 10)))
 `;
 engine.eval(transpiler.transpile(code));
 // Lisp(S expression) to JSON Array (Internal Expression of Orelang_TS) 
