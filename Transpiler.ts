@@ -10,6 +10,6 @@ export class Transpiler {
    * I'll impliment more useful and efficient transpiler to replace with this.
    */
   transpile(code: string): JSON {
-    return Parser.parse(code.replace(/\n/g, ""))[0];
+    return Parser.parse(code.replace(/;.*$/g, "").replace(/\n/g, ""))[0];
   }
 }
