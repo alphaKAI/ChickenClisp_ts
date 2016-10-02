@@ -83,7 +83,7 @@ export class Engine {
       var scriptList:Array<any> = script;
       if (scriptList[0] instanceof Array) {
         var ret = new CallOperator(this.operators[scriptList[0][0]], scriptList[0].slice(1));
-        return new ImmediateValue((<IOperator>ret.eval(this)).call(this, scriptList.slice(1)) );
+        return new ImmediateValue((<IOperator>ret.eval(this)).call(this, scriptList.slice(1)));
       }
       return new CallOperator(this.operators[scriptList[0]], scriptList.slice(1));
     } else {
