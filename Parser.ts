@@ -44,7 +44,6 @@ export class Parser {
             out.push(Number(tmp));
             continue;
           } else if (ch == "\"" || ch == "\'") {
-            var target = ch;
             var tmp: string = "";
             var j = i+1;
 
