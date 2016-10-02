@@ -70,7 +70,7 @@ var code4: string = `
 var code5: string = `
 (step
   (print '(1 2 3 4 5 6 789))
-  (print (map (lambda (x) (* (get x) (get x))) '(1 2 3 4 5)))
+  (print (map (lambda (x) (* (get x) (get x))) (as-iv '(1 2 3 4 5))))
 )
 `;
 
@@ -81,13 +81,22 @@ var code6: string = `
 )
 `;
 
+var codes = [
+  code1,
+  code2,
+  code3,
+  code4,
+  code5,
+  code6
+];
 
-/*
-engine.eval(transpiler.transpile(code1));
-engine.eval(transpiler.transpile(code2));
-engine.eval(transpiler.transpile(code3));
-engine.eval(transpiler.transpile(code4));
-*/
-//engine.eval(transpiler.transpile(code5));
-console.log(engine.eval(transpiler.transpile(code6)));
-// Lisp(S expression) to JSON Array (Internal Expression of Orelang_TS)
+var idx: number = 1;
+codes.forEach(code => {
+  console.log("Sample code", idx++, " :");
+  console.log("CODE----------------------------------------");
+  console.log(code);
+  console.log("OUTPUTS--------------------------------------");
+
+  engine.eval(transpiler.transpile(code));
+  console.log("\n");
+});

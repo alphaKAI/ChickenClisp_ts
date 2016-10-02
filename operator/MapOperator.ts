@@ -6,7 +6,7 @@ import {IExpression} from "../expression/IExpression";
 export class MapOperator implements IOperator {
   public call(engine: Engine, args: Array<any>): Object {
     var func: IExpression = args[0];
-    var eargs1: any = engine.eval(args[1]);
+    var eargs1: any       = engine.eval(args[1]);
 
     if (!(eargs1 instanceof ImmediateValue) && !(eargs1.value instanceof Array)) {
       throw new Error("Map requires array and function as a Operator");
