@@ -55,30 +55,26 @@ var code3: string = `
 (step
   (def fun (x) (* (get x) 40))
   (set f (get-fun fun))
-  (print ((get f) (fun 10)))
-)
+  (print ((get f) (fun 10))))
 `;
 
 var code4: string = `
 (step
   (set x (lambda (y) (* (get y) (get y))))
   (print ((get x) 500))
-  (print ((lambda (z) (* (get z) 40)) 10))
-)
+  (print ((lambda (z) (* (get z) 40)) 10)))
 `;
 
 var code5: string = `
 (step
   (print '(1 2 3 4 5 6 789))
-  (print (map (lambda (x) (* (get x) (get x))) '(1 2 3 4 5)))
-)
+  (print (map (lambda (x) (* (get x) (get x))) '(1 2 3 4 5))))
 `;
 
 var code6: string = `
 (step
   (set arr (set-idx '(1 2 3 4 5) 2 100))
-  (print (map (lambda (x) (* (get x) 10)) (get arr)))
-)
+  (print (map (lambda (x) (* (get x) 10)) (get arr))))
 `;
 
 var codes = [
