@@ -70,7 +70,7 @@ var code4: string = `
 var code5: string = `
 (step
   (print '(1 2 3 4 5 6 789))
-  (print (map (lambda (x) (* (get x) (get x))) (as-iv '(1 2 3 4 5))))
+  (print (map (lambda (x) (* (get x) (get x))) '(1 2 3 4 5)))
 )
 `;
 
