@@ -74,11 +74,20 @@ var code5: string = `
 )
 `;
 
+var code6: string = `
+(step
+  (set arr (set-idx '(1 2 3 4 5) 2 100))
+  (print (map (lambda (x) (* (get x) 10)) (get arr)))
+)
+`;
+
+
 /*
 engine.eval(transpiler.transpile(code1));
 engine.eval(transpiler.transpile(code2));
 engine.eval(transpiler.transpile(code3));
 engine.eval(transpiler.transpile(code4));
 */
-console.log(engine.eval(transpiler.transpile(code5)));
+//engine.eval(transpiler.transpile(code5));
+console.log(engine.eval(transpiler.transpile(code6)));
 // Lisp(S expression) to JSON Array (Internal Expression of Orelang_TS)

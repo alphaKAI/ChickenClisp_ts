@@ -28,6 +28,8 @@ import {GetfunOperator} from "./operator/GetfunOperator";
 import {DynamicOperator} from "./operator/DynamicOperator";
 import {LambdaOperator} from "./operator/LambdaOperator";
 import {MapOperator} from "./operator/MapOperator";
+import {SetIdxOperator} from "./operator/SetIdxOperator";
+import {AsIVOperator} from "./operator/AsIVOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -67,6 +69,8 @@ export class Engine {
     this.operators["get-fun"] = new GetfunOperator();
     this.operators["lambda"]  = new LambdaOperator();
     this.operators["map"]     = new MapOperator();
+    this.operators["set-idx"] = new SetIdxOperator();
+    this.operators["as-iv"]   = new AsIVOperator();
   }
 
   /**

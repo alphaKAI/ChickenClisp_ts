@@ -5,15 +5,17 @@ import {IExpression} from "../expression/IExpression";
 
 export class MapOperator implements IOperator {
   public call(engine: Engine, args: Array<any>): Object {
-    var func:IExpression = args[0];
+    var func: IExpression = args[0];
+    var eargs1: any = engine.eval(args[1]);
 
-    if (!(args[1] instanceof ImmediateValue) && !(args[1].value instanceof Array)) {
+    if (!(eargs1 instanceof ImmediateValue) && !(eargs1.value instanceof Array)) {
       throw new Error("Map requires array and function as a Operator");
     }
 
-    var array: Array<any> = args[1].value;
-    var ret: Array<any> = [];
-    var efunc:IOperator = <IOperator>engine.eval(func);
+
+    var array: Array<any> = eargs1.value;
+    var ret:   Array<any>  = [];
+    var efunc: IOperator = <IOperator>engine.eval(func);
 
     array.forEach((elem) => ret.push(efunc.call(engine, [elem])));
 
