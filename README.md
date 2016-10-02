@@ -11,25 +11,27 @@ This is an implementation of Orelang and provides more functions
 * compare functions: >,>=,<,<=
 * logics : and(&&), or(||), not(!)
 * function definition
+* Function/Operator is first-class object
+* Lambda Expression (lambda keyword)
 
 # Specification of Orelang
 This is not an original specification original is can be found at the article.  
 
 ## Grammer
 Orelang provide only one grammer.
-  
+
 `Expr := (operator args1 args2...) <- this is CallOperator`  
 `Expr := value <- this is ImmediateValue`
-  
+
 This looks like lisp.  
-  
-  
+
+
 # Implementation
 Original implementation of Orelang in Java uses JSON and JSONIC for Syntax Analysis.  
 You can write like Lisp(S-Expression) with trainspiler.  
 Orelang\_TS provides a transpiler which converts S-Expression into internal expression of Orelang\_TS(JSON Array).  
-  
-  
+
+
 # Installation
 ## Requirements
 
