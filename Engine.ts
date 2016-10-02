@@ -50,21 +50,21 @@ export class Engine {
     this.operators["="] = new EqualOperator();
     this.operators["<"] = new LessOperator();
     this.operators[">"] = new GreatOperator();
-    this.operators["<="] = new LEqOperator();
-    this.operators[">="] = new GEqOperator();
+    this.operators["<="]  = new LEqOperator();
+    this.operators[">="]  = new GEqOperator();
     this.operators["set"] = new SetOperator();
     this.operators["get"] = new GetOperator();
     this.operators["until"] = new UntilOperator();
-    this.operators["step"] = new StepOperator();
+    this.operators["step"]  = new StepOperator();
     this.operators["if"] = new IfOperator();
-    this.operators["!"] = new NotOperator();
+    this.operators["!"]  = new NotOperator();
     this.operators["&&"] = new AndOperator();
     this.operators["||"] = new OrOperator();
     this.operators["print"] = new PrintOperator();
-    this.operators["def"] = new DeffunOperator();
+    this.operators["def"]   = new DeffunOperator();
     this.operators["while"] = new WhileOperator();
     this.operators["get-fun"] = new GetfunOperator();
-    this.operators["lambda"] = new LambdaOperator();
+    this.operators["lambda"]  = new LambdaOperator();
   }
 
   /**
