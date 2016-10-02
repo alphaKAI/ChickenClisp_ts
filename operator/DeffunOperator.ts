@@ -7,9 +7,9 @@ export class DeffunOperator implements IOperator {
    * call
    */
   public call(engine: Engine, args: Array<any>): Object {
-    var funcName: string = String(engine.eval(args[0]));
+    var funcName: string   = String(engine.eval(args[0]));
     var funcArgs: string[] = <string[]>args[1];
-    var funcBody: Object = args[2];
+    var funcBody: Object   = args[2];
 
     var x: DynamicOperator = new DynamicOperator(funcArgs, funcBody);
     engine.operators[funcName] = x;

@@ -13,6 +13,7 @@ export class PrintOperator implements IOperator {
     args.forEach(arg => {
       process.stdout.write(String(engine.eval(arg)));
     });
+
     console.log();
 
     return 0;

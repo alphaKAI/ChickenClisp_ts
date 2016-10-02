@@ -7,6 +7,7 @@ export class SetOperator implements IOperator {
    */
   public call(engine: Engine, args: Array<any>): Object {
     var value: Object = engine.eval(args[1]);
+
     engine.variables[args[0]] = value;
 
     return value;
