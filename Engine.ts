@@ -63,7 +63,7 @@ export class Engine {
     this.operators["print"] = new PrintOperator();
     this.operators["def"] = new DeffunOperator();
     this.operators["while"] = new WhileOperator();
-    this.operators["get_fun"] = new GetfunOperator();
+    this.operators["get-fun"] = new GetfunOperator();
   }
 
   /**

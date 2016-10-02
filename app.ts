@@ -54,12 +54,12 @@ var code2: string = `
 var code3: string = `
 (step
   (def fun (x) (* (get x) 40))
-  (set f (get_fun fun))
+  (set f (get-fun fun))
   (print ((get f) (fun 10)))
 )
 `;
 
-//engine.eval(transpiler.transpile(code1));
-//engine.eval(transpiler.transpile(code2));
+engine.eval(transpiler.transpile(code1));
+engine.eval(transpiler.transpile(code2));
 engine.eval(transpiler.transpile(code3));
 // Lisp(S expression) to JSON Array (Internal Expression of Orelang_TS)
