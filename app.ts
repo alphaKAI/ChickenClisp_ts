@@ -67,8 +67,18 @@ var code4: string = `
 )
 `;
 
+var code5: string = `
+(step
+  (print '(1 2 3 4 5 6 789))
+  (print (map (lambda (x) (* (get x) (get x))) '(1 2 3 4 5)))
+)
+`;
+
+/*
 engine.eval(transpiler.transpile(code1));
 engine.eval(transpiler.transpile(code2));
 engine.eval(transpiler.transpile(code3));
 engine.eval(transpiler.transpile(code4));
+*/
+console.log(engine.eval(transpiler.transpile(code5)));
 // Lisp(S expression) to JSON Array (Internal Expression of Orelang_TS)

@@ -27,6 +27,7 @@ import {WhileOperator} from "./operator/WhileOperator";
 import {GetfunOperator} from "./operator/GetfunOperator";
 import {DynamicOperator} from "./operator/DynamicOperator";
 import {LambdaOperator} from "./operator/LambdaOperator";
+import {MapOperator} from "./operator/MapOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -65,6 +66,7 @@ export class Engine {
     this.operators["while"] = new WhileOperator();
     this.operators["get-fun"] = new GetfunOperator();
     this.operators["lambda"]  = new LambdaOperator();
+    this.operators["map"]     = new MapOperator();
   }
 
   /**
@@ -79,6 +81,9 @@ export class Engine {
    * Build Script Tree
    */
   public getExpression(script: Object): IExpression {
+    if (script instanceof ImmediateValue) {
+      return script;
+    }
     if (script instanceof Array) {
       var scriptList:Array<any> = script;
       if (scriptList[0] instanceof Array) {
