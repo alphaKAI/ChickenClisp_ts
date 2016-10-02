@@ -6,7 +6,7 @@ export class MulOperator implements IOperator {
    * call
    */
   public call(engine: Engine, args: Array<any>): Object {
-    var ret = 1;
+    var ret: number = 1;
 
     args.forEach(arg => {
       var v: Object = engine.eval(arg);
