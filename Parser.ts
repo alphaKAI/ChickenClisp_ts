@@ -20,13 +20,16 @@ export class Parser {
 
     for (var i:number = 0; i < code.length; i++) {
       var ch = code[i];
+
       if (ch == ' ') {
         continue;
       } else {
         if (ch == "(") {
           var j = Parser.nextBracket(code.slice(i+1));
+
           out.push(Parser.parse(code.slice(i+1, i + j)));
-          i = i + j;
+
+          i += j;
         } else if (ch == ")") {
           return out;
         } else {
@@ -36,13 +39,12 @@ export class Parser {
 
             do {
               tmp += code[j];
-              j++;
+              ++j;
             } while (!isNaN(Number(code[j])))
 
-            i = j-1;
-
             out.push(Number(tmp));
-            continue;
+
+            i = j-1;
           } else if (ch == "\"" || ch == "\'") {
             var tmp: string = "";
             var j = i+1;
@@ -53,22 +55,26 @@ export class Parser {
               } else {
                 throw new Error("Syntax Error");
               }
-              j++;
+              ++j;
             }
 
-            i = j;
             out.push(tmp);
-            continue;
+
+            i = j;
           } else {
             var tmp: string = "";
             var j = i;
 
-            while (code[j] && code[j] != "\"" && code[j] != "\'" && code[j] != "(" && code[j] != ")" && code[j] != " ") {
+            while (
+              code[j] && code[j] != "\"" && code[j] != "\'" &&
+              code[j] != "(" && code[j] != ")" && code[j] != " ") {
               tmp += code[j];
-              j++;
+              ++j;
             }
-            i = j;
+
             out.push(tmp);
+
+            i = j;
           }
         }
       }
