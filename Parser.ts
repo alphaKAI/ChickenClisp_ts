@@ -1,4 +1,7 @@
 // Parser
+
+import {ImmediateValue} from "./expression/ImmediateValue";
+
 export class Parser {
   static nextBracket(code: string): number {
     var i: number = 0
@@ -40,27 +43,45 @@ export class Parser {
             do {
               tmp += code[j];
               ++j;
-            } while (!isNaN(Number(code[j])))
+            } while (code[j] != " " && !isNaN(Number(code[j])));
 
             out.push(Number(tmp));
 
             i = j-1;
           } else if (ch == "\"" || ch == "\'") {
-            var tmp: string = "";
-            var j = i+1;
+            if (ch == '\'' && code[i + 1] && code[i + 1] == "(") {
+              var tmp:string = "";
+              var j = i+1;
 
-            while (code[j] != ch && code[j] ) {
-              if (j < code.length) {
-                tmp += code[j];
-              } else {
-                throw new Error("Syntax Error");
+              while (code[j] != ")" && code[j]) {
+                if (j < code.length) {
+                  tmp += code[j];
+                } else {
+                  throw new Error("Syntax Error");
+                }
+                ++j;
               }
-              ++j;
+
+              out.push(new ImmediateValue(Parser.parse(tmp + ")")[0]));
+
+              i = j;
+            } else {
+              var tmp: string = "";
+              var j = i+1;
+
+              while (code[j] != ch && code[j] ) {
+                if (j < code.length) {
+                  tmp += code[j];
+                } else {
+                  throw new Error("Syntax Error");
+                }
+                ++j;
+              }
+
+              out.push(tmp);
+
+              i = j;
             }
-
-            out.push(tmp);
-
-            i = j;
           } else {
             var tmp: string = "";
             var j = i;
@@ -82,5 +103,6 @@ export class Parser {
 
     return out;
   }
-  //console.log("parsed -> ", parse(`(foo 12345 "abcdef" (abc hij))`));
 }
+
+//console.log("parsed -> ", Parser.parse(`(foo 12345 "abcdef" (abc hij) '(1 2 3 4 5 6 789))`));
