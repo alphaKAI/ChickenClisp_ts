@@ -59,7 +59,15 @@ var code3: string = `
 )
 `;
 
+var code4: string = `
+(step
+  (set x (lambda (y) (* (get y) (get y))))
+  (print ((get x) 500))
+  (print ((lambda (z) (* (get z) 40)) 10))
+)
+`;
 engine.eval(transpiler.transpile(code1));
 engine.eval(transpiler.transpile(code2));
 engine.eval(transpiler.transpile(code3));
+engine.eval(transpiler.transpile(code4));
 // Lisp(S expression) to JSON Array (Internal Expression of Orelang_TS)

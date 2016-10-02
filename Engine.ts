@@ -26,7 +26,7 @@ import {DeffunOperator} from "./operator/DeffunOperator";
 import {WhileOperator} from "./operator/WhileOperator";
 import {GetfunOperator} from "./operator/GetfunOperator";
 import {DynamicOperator} from "./operator/DynamicOperator";
-
+import {LambdaOperator} from "./operator/LambdaOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -64,6 +64,7 @@ export class Engine {
     this.operators["def"] = new DeffunOperator();
     this.operators["while"] = new WhileOperator();
     this.operators["get-fun"] = new GetfunOperator();
+    this.operators["lambda"] = new LambdaOperator();
   }
 
   /**
