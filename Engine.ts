@@ -70,8 +70,15 @@ export class Engine {
   }
 
   private _super: Engine = null;
-  public clone(engine: Engine) {
-    this._super = engine;
+  public clone(): Engine {
+    var newEngine: Engine = new Engine();
+
+    newEngine._super    = this;
+    for (var key in this.variables) {
+      newEngine.variables[key] = this.variables[key];
+    }
+
+    return newEngine;
   }
 
   public defineVariable(name: string, value: Object): Object {
