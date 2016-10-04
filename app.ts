@@ -77,13 +77,32 @@ var code6: string = `
   (print (map (lambda (x) (* (get x) 10)) (get arr))))
 `;
 
+var code7: string = `
+(step
+  (set x 10)
+  (print (get x)))
+`;
+
+var factor: string = `
+(step
+  (def fuctor (x)
+    (if (<= (get x) 1)
+      1
+      (* (get x) (fuctor (- (get x) 1)))))
+  (print (fuctor 4))
+  (print (fuctor 5))
+)
+`
+
 var codes = [
   code1,
   code2,
   code3,
   code4,
   code5,
-  code6
+  code6,
+  code7,
+  factor
 ];
 
 var idx: number = 1;
@@ -96,3 +115,5 @@ codes.forEach(code => {
   engine.eval(transpiler.transpile(code));
   console.log("\n");
 });
+
+engine.eval(transpiler.transpile(factor));
