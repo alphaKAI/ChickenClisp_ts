@@ -129,8 +129,6 @@ export class Engine {
     } else {
       return ret;
     }
-
-    //return this.getExpression(script).eval(this);;
   }
 
   /**
@@ -148,15 +146,11 @@ export class Engine {
         var ret = new CallOperator(<IOperator>this.variables[scriptList[0][0]], scriptList[0].slice(1));
         var tmp = ret.eval(this);
 
-        //console.log("RET -> ", ret);
-        //console.log("TMP -> ", tmp);
-
         if (tmp instanceof Closure) {
           return new ImmediateValue((<Closure>tmp).eval(scriptList.slice(1)));
         } else {
           return new ImmediateValue((<IOperator>tmp).call(this, scriptList.slice(1)));
         }
-        //return new ImmediateValue((<IOperator>ret.eval(this)).call(this, scriptList.slice(1)));
       }
       return new CallOperator(<IOperator>this.variables[scriptList[0]], scriptList.slice(1));
     } else {
