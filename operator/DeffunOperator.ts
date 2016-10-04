@@ -12,7 +12,7 @@ export class DeffunOperator implements IOperator {
     var funcBody: Object   = args[2];
 
     var x: DynamicOperator = new DynamicOperator(funcArgs, funcBody);
-    engine.operators[funcName] = x;
+    engine.variables[funcName] = x;
     return x;
   }
 }

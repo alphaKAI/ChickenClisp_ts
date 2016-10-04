@@ -6,6 +6,6 @@ export class GetfunOperator implements IOperator {
    * call
    */
   public call(engine: Engine, args: Array<any>): Object {
-    return engine.operators[<string>engine.eval(args[0])];
+    return engine.variables[<string>engine.eval(args[0])];
   }
 }

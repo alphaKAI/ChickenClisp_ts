@@ -7,7 +7,7 @@ import {CallOperator} from "./expression/CallOperator";
 import {ImmediateValue} from "./expression/ImmediateValue";
 
 /**
- * Operators
+ * variables
  */
 import {AddOperator} from "./operator/AddOperator";
 import {SubOperator} from "./operator/SubOperator";
@@ -35,9 +35,9 @@ import {AsIVOperator} from "./operator/AsIVOperator";
  */
 export class Engine {
   /**
-   * This holds Operators as a hash table by string key.
+   * This holds variables as a hash table by string key.
    */
-  public operators: {[key: string]: IOperator} = {};
+  //public variables: {[key: string]: IOperator} = {};
   /**
    * This holds global variables.
    * Current Orelang_TS provides global varibale only.
@@ -45,32 +45,37 @@ export class Engine {
   public variables: {[key: string]: Object} = {};
 
   constructor() {
-    this.operators["+"] = new AddOperator();
-    this.operators["-"] = new SubOperator();
-    this.operators["*"] = new MulOperator();
-    this.operators["/"] = new DivOperator();
-    this.operators["%"] = new ModOperator();
-    this.operators["="] = new EqualOperator();
-    this.operators["<"] = new LessOperator();
-    this.operators[">"] = new GreatOperator();
-    this.operators["<="]  = new LEqOperator();
-    this.operators[">="]  = new GEqOperator();
-    this.operators["set"] = new SetOperator();
-    this.operators["get"] = new GetOperator();
-    this.operators["until"] = new UntilOperator();
-    this.operators["step"]  = new StepOperator();
-    this.operators["if"] = new IfOperator();
-    this.operators["!"]  = new NotOperator();
-    this.operators["&&"] = new AndOperator();
-    this.operators["||"] = new OrOperator();
-    this.operators["print"] = new PrintOperator();
-    this.operators["def"]   = new DeffunOperator();
-    this.operators["while"] = new WhileOperator();
-    this.operators["get-fun"] = new GetfunOperator();
-    this.operators["lambda"]  = new LambdaOperator();
-    this.operators["map"]     = new MapOperator();
-    this.operators["set-idx"] = new SetIdxOperator();
-    this.operators["as-iv"]   = new AsIVOperator();
+    this.variables["+"] = new AddOperator();
+    this.variables["-"] = new SubOperator();
+    this.variables["*"] = new MulOperator();
+    this.variables["/"] = new DivOperator();
+    this.variables["%"] = new ModOperator();
+    this.variables["="] = new EqualOperator();
+    this.variables["<"] = new LessOperator();
+    this.variables[">"] = new GreatOperator();
+    this.variables["<="]  = new LEqOperator();
+    this.variables[">="]  = new GEqOperator();
+    this.variables["set"] = new SetOperator();
+    this.variables["get"] = new GetOperator();
+    this.variables["until"] = new UntilOperator();
+    this.variables["step"]  = new StepOperator();
+    this.variables["if"] = new IfOperator();
+    this.variables["!"]  = new NotOperator();
+    this.variables["&&"] = new AndOperator();
+    this.variables["||"] = new OrOperator();
+    this.variables["print"] = new PrintOperator();
+    this.variables["def"]   = new DeffunOperator();
+    this.variables["while"] = new WhileOperator();
+    this.variables["get-fun"] = new GetfunOperator();
+    this.variables["lambda"]  = new LambdaOperator();
+    this.variables["map"]     = new MapOperator();
+    this.variables["set-idx"] = new SetIdxOperator();
+    this.variables["as-iv"]   = new AsIVOperator();
+  }
+
+  private _super: Engine = null;
+  public clone(engine: Engine) {
+    this._super = engine;
   }
 
   /**
@@ -91,10 +96,10 @@ export class Engine {
     if (script instanceof Array) {
       var scriptList:Array<any> = script;
       if (scriptList[0] instanceof Array) {
-        var ret = new CallOperator(this.operators[scriptList[0][0]], scriptList[0].slice(1));
+        var ret = new CallOperator(<IOperator>this.variables[scriptList[0][0]], scriptList[0].slice(1));
         return new ImmediateValue((<IOperator>ret.eval(this)).call(this, scriptList.slice(1)));
       }
-      return new CallOperator(this.operators[scriptList[0]], scriptList.slice(1));
+      return new CallOperator(<IOperator>this.variables[scriptList[0]], scriptList.slice(1));
     } else {
       return new ImmediateValue(script);
     }
