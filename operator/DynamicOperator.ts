@@ -16,20 +16,12 @@ export class DynamicOperator implements IOperator {
 
   public call(engine: Engine, args: Array<any>): Object {
     var i: number = 0;
-    var targ: any = ["step"];
+    var _engine: Engine = engine.clone();
 
-    /*
-      TODO: This arguments passing style has a problem, which can confilict with already used name and argument name.
-    */
-    this.funcArgs.forEach(key => {
-      targ.push(["set", key, args[i]]);
+    this.funcArgs.forEach(arg => {
+      _engine.defineVariable(arg, engine.eval(args[i++]));
     });
 
-    // 1 offset for step operator
-    if (targ.length > 1) {
-      engine.eval(targ);
-    }
-
-    return engine.eval(this.funcBody);
+    return _engine.eval(this.funcBody);
   }
 }
