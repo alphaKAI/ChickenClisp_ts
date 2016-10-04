@@ -6,10 +6,6 @@ export class SetOperator implements IOperator {
    * call
    */
   public call(engine: Engine, args: Array<any>): Object {
-    var value: Object = engine.eval(args[1]);
-
-    engine.variables[args[0]] = value;
-
-    return value;
+    return engine.setVariable(<string>args[0], engine.eval(args[1]));
   }
 }

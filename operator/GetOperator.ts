@@ -6,6 +6,6 @@ export class GetOperator implements IOperator {
    * call
    */
   public call(engine: Engine, args: Array<any>): Object {
-    return engine.variables[args[0]];
+    return engine.getVariable(<string>args[0]);
   }
 }

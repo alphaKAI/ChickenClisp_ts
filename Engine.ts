@@ -35,12 +35,8 @@ import {AsIVOperator} from "./operator/AsIVOperator";
  */
 export class Engine {
   /**
-   * This holds variables as a hash table by string key.
-   */
-  //public variables: {[key: string]: IOperator} = {};
-  /**
-   * This holds global variables.
-   * Current Orelang_TS provides global varibale only.
+   * This holds variables and operators.
+   * You can distinguish A VALUE of the child of this from whether a varibale or an operator.
    */
   public variables: {[key: string]: Object} = {};
 
@@ -76,6 +72,44 @@ export class Engine {
   private _super: Engine = null;
   public clone(engine: Engine) {
     this._super = engine;
+  }
+
+  public defineVariable(name: string, value: Object): Object {
+    this.variables[name] = value;
+
+    return value;
+  }
+
+  public setVariable(name: string, value: Object): Object {
+    var engine: Engine = this;
+
+    while (true) {
+      if (engine.variables[name] != undefined) {
+        engine.variables[name] = value;
+
+        return value;
+      } else if (engine._super != null) {
+        engine = engine._super;
+      } else {
+        engine.defineVariable(name, value);
+
+        return value;
+      }
+    }
+  }
+
+  public getVariable(name: string) {
+    var engine: Engine = this;
+
+    while (true) {
+      if (engine.variables[name] != undefined) {
+        return engine.variables[name];
+      } else if (engine._super != null) {
+        engine = engine._super;
+      } else {
+        throw new Error("No such a variable: " + name);
+      }
+    }
   }
 
   /**
