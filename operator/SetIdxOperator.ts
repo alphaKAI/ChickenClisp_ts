@@ -1,8 +1,8 @@
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 import {ImmediateValue} from "../expression/ImmediateValue";
 
-export class SetIdxOperator implements IOperator {
+export class SetIdxOperator extends Operator implements IOperator {
   /**
    * call
    */

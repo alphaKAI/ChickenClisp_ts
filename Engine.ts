@@ -2,9 +2,10 @@
  * Premitive Interfaces and Value Classes
  */
 import {IExpression} from "./expression/IExpression";
-import {IOperator} from "./operator/IOperator";
+import {IOperator, Operator} from "./operator/IOperator";
 import {CallOperator} from "./expression/CallOperator";
 import {ImmediateValue} from "./expression/ImmediateValue";
+import {Closure} from "./Closure";
 
 /**
  * variables
@@ -30,6 +31,7 @@ import {LambdaOperator} from "./operator/LambdaOperator";
 import {MapOperator} from "./operator/MapOperator";
 import {SetIdxOperator} from "./operator/SetIdxOperator";
 import {AsIVOperator} from "./operator/AsIVOperator";
+import {DefvarOperator} from "./operator/DefvarOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -67,6 +69,7 @@ export class Engine {
     this.variables["map"]     = new MapOperator();
     this.variables["set-idx"] = new SetIdxOperator();
     this.variables["as-iv"]   = new AsIVOperator();
+    this.variables["def-var"] = new DefvarOperator();
   }
 
   private _super: Engine = null;
@@ -74,9 +77,7 @@ export class Engine {
     var newEngine: Engine = new Engine();
 
     newEngine._super    = this;
-    for (var key in this.variables) {
-      newEngine.variables[key] = this.variables[key];
-    }
+    for (var key in this.variables) { newEngine.variables[key] = this.variables[key]; }
 
     return newEngine;
   }
@@ -99,8 +100,6 @@ export class Engine {
         engine = engine._super;
       } else {
         engine.defineVariable(name, value);
-
-        return value;
       }
     }
   }
@@ -123,7 +122,15 @@ export class Engine {
    * Evalute Object
    */
   public eval(script: Object): Object {
-    return this.getExpression(script).eval(this);
+    var ret: Object = this.getExpression(script).eval(this);
+
+    if (ret instanceof Operator) {
+      return new Closure(this, <IOperator>ret);
+    } else {
+      return ret;
+    }
+
+    //return this.getExpression(script).eval(this);;
   }
 
   /**
@@ -134,11 +141,22 @@ export class Engine {
     if (script instanceof ImmediateValue) {
       return script;
     }
+
     if (script instanceof Array) {
       var scriptList:Array<any> = script;
       if (scriptList[0] instanceof Array) {
         var ret = new CallOperator(<IOperator>this.variables[scriptList[0][0]], scriptList[0].slice(1));
-        return new ImmediateValue((<IOperator>ret.eval(this)).call(this, scriptList.slice(1)));
+        var tmp = ret.eval(this);
+
+        //console.log("RET -> ", ret);
+        //console.log("TMP -> ", tmp);
+
+        if (tmp instanceof Closure) {
+          return new ImmediateValue((<Closure>tmp).eval(scriptList.slice(1)));
+        } else {
+          return new ImmediateValue((<IOperator>tmp).call(this, scriptList.slice(1)));
+        }
+        //return new ImmediateValue((<IOperator>ret.eval(this)).call(this, scriptList.slice(1)));
       }
       return new CallOperator(<IOperator>this.variables[scriptList[0]], scriptList.slice(1));
     } else {

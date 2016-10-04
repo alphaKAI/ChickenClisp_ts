@@ -1,9 +1,10 @@
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 import {ImmediateValue} from "../expression/ImmediateValue";
 import {IExpression} from "../expression/IExpression";
+import {Closure} from "../Closure";
 
-export class MapOperator implements IOperator {
+export class MapOperator extends Operator implements IOperator {
   public call(engine: Engine, args: Array<any>): Object {
     var func: IExpression = args[0];
     var eargs1: any       = engine.eval(args[1]);
@@ -11,9 +12,13 @@ export class MapOperator implements IOperator {
   if (eargs1 instanceof Array) {
     var array: Array<any> = eargs1;
     var ret:   Array<any>  = [];
-    var efunc: IOperator = <IOperator>engine.eval(func);
+    var efunc: Object = engine.eval(func);
 
-    array.forEach((elem) => ret.push(efunc.call(engine, [elem])));
+    if (efunc instanceof Closure) {
+      array.forEach((elem) => ret.push((<Closure>efunc).eval([elem])));
+    } else {
+      array.forEach((elem) => ret.push((<IOperator>efunc).call(engine, [elem])));
+    }
 
     return ret;
   } else {
@@ -23,9 +28,13 @@ export class MapOperator implements IOperator {
 
       var array: Array<any> = eargs1.value;
       var ret:   Array<any>  = [];
-      var efunc: IOperator = <IOperator>engine.eval(func);
+      var efunc: Object = engine.eval(func);
 
-      array.forEach((elem) => ret.push(efunc.call(engine, [elem])));
+      if (efunc instanceof Closure) {
+        array.forEach((elem) => ret.push((<Closure>efunc).eval([elem])));
+      } else {
+        array.forEach((elem) => ret.push((<IOperator>efunc).call(engine, [elem])));
+      }
 
       return ret;
     }

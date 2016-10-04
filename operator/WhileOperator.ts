@@ -1,7 +1,7 @@
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 
-export class WhileOperator implements IOperator {
+export class WhileOperator extends Operator implements IOperator {
   /**
    * Loop while the condition is true.
    */

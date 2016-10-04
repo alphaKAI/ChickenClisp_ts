@@ -79,7 +79,6 @@ export class Parser {
               }
 
               out.push(tmp);
-
               i = j;
             }
           } else {

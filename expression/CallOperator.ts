@@ -1,6 +1,7 @@
 import {Engine} from "../Engine";
 import {IOperator} from "../operator/IOperator";
 import {IExpression} from "../expression/IExpression";
+import {Closure} from "../Closure";
 
 export class CallOperator implements IExpression {
   private operator: IOperator;
@@ -15,6 +16,8 @@ export class CallOperator implements IExpression {
    * eval
    */
   public eval(engine: Engine): Object {
-    return this.operator.call(engine, this.args);
+    //return this.operator.call(engine, this.args);
+    var closure: Closure = <Closure>engine.eval(this.operator);
+    return closure.eval(this.args);
   }
 }

@@ -1,7 +1,7 @@
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 
-export class EqualOperator implements IOperator {
+export class EqualOperator extends Operator implements IOperator {
   /**
    * call
    */
@@ -10,7 +10,7 @@ export class EqualOperator implements IOperator {
   }
 }
 
-export class NotEqualOperator implements IOperator {
+export class NotEqualOperator extends Operator implements IOperator {
   /**
    * call
    */
@@ -19,7 +19,7 @@ export class NotEqualOperator implements IOperator {
   }
 }
 
-export class LessOperator implements IOperator {
+export class LessOperator extends Operator implements IOperator {
   /**
    * call
    */
@@ -28,7 +28,7 @@ export class LessOperator implements IOperator {
   }
 }
 
-export class GreatOperator implements IOperator {
+export class GreatOperator extends Operator implements IOperator {
   /**
    * call
    */
@@ -37,7 +37,7 @@ export class GreatOperator implements IOperator {
   }
 }
 
-export class LEqOperator implements IOperator {
+export class LEqOperator extends Operator implements IOperator {
   /**
    * call
    */
@@ -46,7 +46,7 @@ export class LEqOperator implements IOperator {
   }
 }
 
-export class GEqOperator implements IOperator {
+export class GEqOperator extends Operator implements IOperator {
   /**
    * call
    */

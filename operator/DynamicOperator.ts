@@ -1,15 +1,16 @@
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 
 /**
  * Dynamic Operator
  */
 
-export class DynamicOperator implements IOperator {
+export class DynamicOperator extends Operator implements IOperator {
   private funcArgs: string[];
   private funcBody: Object;
 
   constructor(funcArgs: string[], funcBody: Object) {
+    super();
     this.funcArgs = funcArgs;
     this.funcBody = funcBody;
   }

@@ -3,9 +3,9 @@
 
 
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 
-export class PrintOperator implements IOperator {
+export class PrintOperator extends Operator implements IOperator {
   /**
    * call
    */

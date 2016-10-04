@@ -1,7 +1,7 @@
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 
-export class SetOperator implements IOperator {
+export class SetOperator extends Operator implements IOperator {
   /**
    * call
    */

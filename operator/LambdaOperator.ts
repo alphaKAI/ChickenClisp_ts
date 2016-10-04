@@ -1,8 +1,8 @@
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 import {DynamicOperator} from "../operator/DynamicOperator";
 
-export class LambdaOperator implements IOperator {
+export class LambdaOperator extends Operator implements IOperator {
   /**
    * call
    */

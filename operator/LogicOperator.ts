@@ -1,7 +1,7 @@
 import {Engine} from "../Engine";
-import {IOperator} from "../operator/IOperator";
+import {IOperator, Operator} from "../operator/IOperator";
 
-export class NotOperator implements IOperator {
+export class NotOperator extends Operator implements IOperator {
   /**
    * call
    */
@@ -10,7 +10,7 @@ export class NotOperator implements IOperator {
   }
 }
 
-export class AndOperator implements IOperator {
+export class AndOperator extends Operator implements IOperator {
   /**
    * call
    */
@@ -19,7 +19,7 @@ export class AndOperator implements IOperator {
   }
 }
 
-export class OrOperator implements IOperator {
+export class OrOperator extends Operator implements IOperator {
   /**
    * call
    */
