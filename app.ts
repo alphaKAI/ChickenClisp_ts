@@ -115,5 +115,3 @@ codes.forEach(code => {
   engine.eval(transpiler.transpile(code));
   console.log("\n");
 });
-
-engine.eval(transpiler.transpile(factor));
