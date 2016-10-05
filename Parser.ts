@@ -43,7 +43,7 @@ export class Parser {
             do {
               tmp += code[j];
               ++j;
-            } while (code[j] != " " && !isNaN(Number(code[j])));
+            } while ((code[j] != " " && !isNaN(Number(code[j]))) || (code[j] == "." && code[j + 1] != undefined && !isNaN(Number(code[j + 1]))));
 
             out.push(Number(tmp));
 
