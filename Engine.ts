@@ -32,6 +32,7 @@ import {MapOperator} from "./operator/MapOperator";
 import {SetIdxOperator} from "./operator/SetIdxOperator";
 import {AsIVOperator} from "./operator/AsIVOperator";
 import {DefvarOperator} from "./operator/DefvarOperator";
+import {SeqOperator} from "./operator/SeqOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -70,6 +71,7 @@ export class Engine {
     this.variables["set-idx"] = new SetIdxOperator();
     this.variables["as-iv"]   = new AsIVOperator();
     this.variables["def-var"] = new DefvarOperator();
+    this.variables["seq"]     = new SeqOperator();
   }
 
   /*
