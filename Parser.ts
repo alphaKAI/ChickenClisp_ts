@@ -92,7 +92,15 @@ export class Parser {
               ++j;
             }
 
-            out.push(tmp);
+            if (tmp == "true") {
+              out.push(true);
+            } else if (tmp == "false") {
+              out.push(false);
+            } else if (tmp == "null") {
+              out.push(null);
+            } else {
+              out.push(tmp);
+            }
 
             i = j;
           }
