@@ -49,8 +49,6 @@ export class Interpreter {
         e();
       }
 
-      //console.log("this.bracketState -> ", that.bracketState);
-
       for (var i: number = 0; i < that.bracketState + 1; ++i) {
         process.stdout.write("=");
       }
