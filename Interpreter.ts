@@ -1,5 +1,4 @@
 /// <reference path="./typings/index.d.ts" />
-// app
 import {Engine} from "./Engine";
 import {Transpiler} from "./Transpiler";
 
