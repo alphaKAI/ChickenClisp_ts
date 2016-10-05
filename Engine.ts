@@ -72,11 +72,15 @@ export class Engine {
     this.variables["def-var"] = new DefvarOperator();
   }
 
+  /*
+    Clone this object
+  */
   private _super: Engine = null;
   public clone(): Engine {
     var newEngine: Engine = new Engine();
 
     newEngine._super    = this;
+
     for (var key in this.variables) { newEngine.variables[key] = this.variables[key]; }
 
     return newEngine;
