@@ -19,7 +19,6 @@ export class Parser {
 
   static parse(code: string): Array<any> {
     var out: Array<any> = [];
-    var symbol: string;
 
     for (var i:number = 0; i < code.length; i++) {
       var ch = code[i];
