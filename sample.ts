@@ -105,6 +105,8 @@ var fib = `
     (set i (+ (get i) 1)))))
 `;
 
+var fold = "(print (fold (get-fun +) 0 (map (lambda (x) (* (get x) (get x))) (seq 10))))";
+
 var codes = [
   code1,
   code2,
@@ -114,7 +116,8 @@ var codes = [
   code6,
   code7,
   factor,
-  fib
+  fib,
+  fold
 ];
 
 
