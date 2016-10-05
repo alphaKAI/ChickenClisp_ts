@@ -129,3 +129,8 @@ codes.forEach(code => {
   engine.eval(transpiler.transpile(code));
   console.log("\n");
 });
+
+import {Interpreter} from "./Interpreter";
+
+var itpr = new Interpreter();
+itpr.interpreter();
