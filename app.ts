@@ -18,7 +18,7 @@ if (process.argv.length == 3 && path.basename(process.argv[0]) == "node") {
 
     engine.eval(transpiler.transpile(<string>fs.readFileSync(fpath).toString()));
   }
-} else if (process.argv.length == 1) {
+} else if (process.argv.length == 2) {
   var itpr = new Interpreter();
   itpr.interpreter();
 } else {
