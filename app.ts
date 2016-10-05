@@ -86,14 +86,24 @@ var code7: string = `
 
 var factor: string = `
 (step
-  (def fuctor (x)
+  (def factor (x)
     (if (<= (get x) 1)
       1
-      (* (get x) (fuctor (- (get x) 1)))))
-  (print (fuctor 4))
-  (print (fuctor 5))
-)
+      (* (get x) (factor (- (get x) 1)))))
+  (print (factor 4))
+  (print (factor 5)))
 `
+var fib = `
+(step
+  (def fib (n) (step
+    (if (= (get n) 0) 0
+      (if (= (get n) 1) 1
+        (+ (fib (- (get n) 1)) (fib (- (get n) 2)))))))
+  (def-var i 0)
+  (while (< (get i) 10) (step
+    (print (fib (get i)))
+    (set i (+ (get i) 1)))))
+`;
 
 var codes = [
   code1,
@@ -103,11 +113,13 @@ var codes = [
   code5,
   code6,
   code7,
-  factor
+  factor,
+  fib
 ];
 
 
 var idx: number = 1;
+
 codes.forEach(code => {
   console.log("Sample code", idx++, " :");
   console.log("CODE----------------------------------------");
