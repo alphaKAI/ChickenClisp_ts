@@ -156,7 +156,7 @@ export class Engine {
 
         if (tmp instanceof Closure) {
           return new ImmediateValue((<Closure>tmp).eval(scriptList.slice(1)));
-        } else {
+        } else if (tmp instanceof Operator) {
           return new ImmediateValue((<IOperator>tmp).call(this, scriptList.slice(1)));
         }
       }
