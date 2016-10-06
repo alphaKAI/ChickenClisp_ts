@@ -29,14 +29,14 @@ var code1: string = `
 (step
   (def square (x)
     (step
-      (set y (* (get x) (get x)))
-      (set z (* (get x) (get x)))
-      (* (get y) (get z))))
+      (set y (* x x))
+      (set z (* x x))
+      (* y z)))
   (set x 1)
-  (while (< (get x) 11)
+  (while (< x 11)
     (step
-      (print (get x))
-      (set x (+ (get x) 1))))
+      (print x)
+      (set x (+ x 1))))
   (print (square 10)))
 `;
 
@@ -45,67 +45,67 @@ var code2: string = `
 (step
   (set sum 0)
   (set i 1)
-  (while (<= (get i) 10)
+  (while (<= i 10)
     (step
-      (set sum (+ (get sum) (get i)))
-      (set i (+ (get i) 1))))
-  (print (get sum)))
+      (set sum (+ sum i))
+      (set i (+ i 1))))
+  (print sum))
 `;
 
 var code3: string = `
 (step
-  (def fun (x) (* (get x) 40))
-  (set f (get-fun fun))
-  (print ((get f) (fun 10))))
+  (def fun (x) (* x 40))
+  (set f fun)
+  (print (f (fun 10))))
 `;
 
 var code4: string = `
 (step
-  (set x (lambda (y) (* (get y) (get y))))
-  (print ((get x) 500))
-  (print ((lambda (z) (* (get z) 40)) 10)))
+  (set x (lambda (y) (* y y)))
+  (print (x 500))
+  (print ((lambda (z) (* z 40)) 10)))
 `;
 
 var code5: string = `
 (step
   (print '(1 2 3 4 5 6 789))
-  (print (map (lambda (x) (* (get x) (get x))) '(1 2 3 4 5))))
+  (print (map (lambda (x) (* x x )) '(1 2 3 4 5))))
 `;
 
 var code6: string = `
 (step
   (set arr (set-idx '(1 2 3 4 5) 2 100))
-  (print (map (lambda (x) (* (get x) 10)) (get arr))))
+  (print (map (lambda (x) (* x 10)) arr)))
 `;
 
 var code7: string = `
 (step
   (set x 10)
-  (print (get x)))
+  (print x))
 `;
 
 var factor: string = `
 (step
   (def factor (x)
-    (if (<= (get x) 1)
+    (if (<= x 1)
       1
-      (* (get x) (factor (- (get x) 1)))))
+      (* x (factor (- x 1)))))
   (print (factor 4))
   (print (factor 5)))
 `
 var fib = `
 (step
   (def fib (n) (step
-    (if (= (get n) 0) 0
-      (if (= (get n) 1) 1
-        (+ (fib (- (get n) 1)) (fib (- (get n) 2)))))))
+    (if (= n 0) 0
+      (if (= n 1) 1
+        (+ (fib (- n 1)) (fib (- n 2)))))))
   (def-var i 0)
-  (while (< (get i) 10) (step
-    (print (fib (get i)))
-    (set i (+ (get i) 1)))))
+  (while (< i 10) (step
+    (print (fib i))
+    (set i (+ i 1)))))
 `;
 
-var fold = "(print (fold (get-fun +) 0 (map (lambda (x) (* (get x) (get x))) (seq 10))))";
+var fold = "(print (fold + 0 (map (lambda (x) (* x x)) (seq 10))))";
 
 var codes = [
   code1,

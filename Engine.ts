@@ -121,7 +121,7 @@ export class Engine {
       } else if (engine._super != null) {
         engine = engine._super;
       } else {
-        throw new Error("No such a variable: " + name);
+        return undefined;
       }
     }
   }
@@ -130,7 +130,13 @@ export class Engine {
    * Evalute Object
    */
   public eval(script: Object): Object {
-    var ret: Object = this.getExpression(script).eval(this);
+    var ret: Object = this.getExpression(script);
+
+    if (ret instanceof Operator) {
+      return ret;
+    }
+
+    ret = ret.eval(this);
 
     if (ret instanceof Operator) {
       return new Closure(this, <IOperator>ret);
@@ -162,6 +168,15 @@ export class Engine {
       }
       return new CallOperator(<IOperator>this.variables[scriptList[0]], scriptList.slice(1));
     } else {
+      var tmp = this.getVariable(<string>script);
+      if (tmp != undefined) {
+        if (tmp instanceof Operator) {
+          return <IExpression>tmp;
+        } else {
+          return new ImmediateValue(tmp);
+        }
+      }
+
       return new ImmediateValue(script);
     }
   }
