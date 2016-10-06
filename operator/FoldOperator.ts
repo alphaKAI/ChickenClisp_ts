@@ -18,7 +18,7 @@ export class FoldOperator extends Operator implements IOperator {
       array.forEach((elem) =>
         tmp = (<Closure>efunc).eval([tmp, elem])
       );
-    } else {
+    } else if (efunc instanceof Operator) {
       array.forEach((elem) =>
         tmp = (<IOperator>efunc).call(engine, [tmp, elem])
       );
