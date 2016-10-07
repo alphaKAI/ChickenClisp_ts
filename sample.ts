@@ -7,7 +7,7 @@ var transpiler: Transpiler = new Transpiler();
 /**
  * sum of 1 to 10
  */
- /*
+
 var x = engine.eval(
   ["step",
     ["set", "i", 10],
@@ -20,7 +20,7 @@ var x = engine.eval(
     ["get", "sum"]
   ]
 );
-*/
+
 /**
  * S Expression
  */
