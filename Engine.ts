@@ -39,6 +39,7 @@ import {CarOperator} from "./operator/CarOperator";
 import {CdrOperator} from "./operator/CdrOperator";
 import {LoadOperator} from "./operator/LoadOperator";
 import {CondOperator} from "./operator/CondOperator";
+import {AliasOperator} from "./operator/AliasOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -84,6 +85,7 @@ export class Engine {
     this.variables["cdr"]     = new CdrOperator();
     this.variables["load"]    = new LoadOperator();
     this.variables["cond"]    = new CondOperator();
+    this.variables["alias"]   = new AliasOperator();
   }
 
   /*
