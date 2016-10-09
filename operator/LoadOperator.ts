@@ -19,8 +19,6 @@ export class LoadOperator extends Operator implements IOperator {
       args = eargs0;
     }
 
-    console.log(args);
-
     var fpaths: Array<any> = args.map(arg => (<string>engine.eval(arg)) + ".ore");
 
     fpaths.forEach(fpath => {
