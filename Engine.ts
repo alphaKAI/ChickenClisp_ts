@@ -40,6 +40,8 @@ import {CdrOperator} from "./operator/CdrOperator";
 import {LoadOperator} from "./operator/LoadOperator";
 import {CondOperator} from "./operator/CondOperator";
 import {AliasOperator} from "./operator/AliasOperator";
+import {TimeOperator} from "./operator/TimeOperator";
+import {LetOperator} from "./operator/LetOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -67,8 +69,11 @@ export class Engine {
     this.variables["step"]  = new StepOperator();
     this.variables["if"] = new IfOperator();
     this.variables["!"]  = new NotOperator();
-    this.variables["&&"] = new AndOperator();
-    this.variables["||"] = new OrOperator();
+    this.variables["not"] = this.variables["!"];
+    this.variables["&&"]  = new AndOperator();
+    this.variables["and"] = this.variables["&&"];
+    this.variables["||"]  = new OrOperator();
+    this.variables["or"]  = this.variables["||"];
     this.variables["print"] = new PrintOperator();
     this.variables["def"]   = new DeffunOperator();
     this.variables["while"] = new WhileOperator();
@@ -86,6 +91,8 @@ export class Engine {
     this.variables["load"]    = new LoadOperator();
     this.variables["cond"]    = new CondOperator();
     this.variables["alias"]   = new AliasOperator();
+    this.variables["time"]    = new TimeOperator();
+    this.variables["let"]    = new LetOperator();
   }
 
   /*
