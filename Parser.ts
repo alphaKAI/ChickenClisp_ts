@@ -49,21 +49,11 @@ export class Parser {
             i = j-1;
           } else if (ch == "\"" || ch == "\'") {
             if (ch == '\'' && code[i + 1] && code[i + 1] == "(") {
-              var tmp:string = "";
-              var j = i+1;
+              var j = Parser.nextBracket(code.slice(i + 2)) + 1;
 
-              while (code[j] != ")" && code[j]) {
-                if (j < code.length) {
-                  tmp += code[j];
-                } else {
-                  throw new Error("Syntax Error");
-                }
-                ++j;
-              }
+              out.push(new ImmediateValue(Parser.parse(code.slice(i+2, j+i))));
 
-              out.push(new ImmediateValue(Parser.parse(tmp + ")")[0]));
-
-              i = j;
+              i += j;
             } else {
               var tmp: string = "";
               var j = i+1;
