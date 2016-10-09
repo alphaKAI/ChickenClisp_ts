@@ -7,12 +7,16 @@ Orelang is simple and minimal programming language declared at the article[ãƒ—ãƒ
 # Features
 This is an implementation of Orelang and provides more functions
 
-* if expression
+* if/cond expression
 * compare functions: >,>=,<,<=
 * logics : and(&&), or(||), not(!)
 * function definition
 * Function/Operator is first-class object
 * Lambda Expression (lambda keyword)
+* Closure
+* List support(and utilities like car, cdr)
+  
+This language aims an original scheme like lisp.  
 
 # Specification of Orelang
 This is not an original specification original is can be found at the article.  
