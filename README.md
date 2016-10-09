@@ -15,7 +15,7 @@ This is an implementation of Orelang and provides more functions
 * Lambda Expression (lambda keyword)
 * Closure
 * List support(and utilities like car, cdr)
-  
+
 This language aims an original scheme like lisp.  
 
 # Specification of Orelang
@@ -40,7 +40,8 @@ Orelang\_TS provides a transpiler which converts S-Expression into internal expr
 ## Requirements
 
 - tsc(1.8.7 or later)
-- typings(1.4.0) <- install by `npm install i -g typings`
+- typings(1.4.0) <- install by `npm install -g typings`
+- date-utils <- install by `npm install date-utils`
 
 ## Commands
 
