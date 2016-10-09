@@ -1,0 +1,27 @@
+{
+  "name": "orelang_ts",
+  "version": "0.3.0",
+  "description": "An implementation of Orelang in TypeScript",
+  "main": "app.js",
+  "dependencies": {
+    "date-utils": "^1.2.21",
+    "typings": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphaKAI/Orelang_TS.git"
+  },
+  "keywords": [
+    "Orelang"
+  ],
+  "author": "alphaKAI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alphaKAI/Orelang_TS/issues"
+  },
+  "homepage": "https://github.com/alphaKAI/Orelang_TS#readme"
+}
