@@ -37,7 +37,7 @@ var code1: string = `
     (step
       (print x)
       (set x (+ x 1))))
-  (print (square 10)))
+  (println (square 10)))
 `;
 
 // sum 1 to 10
@@ -49,21 +49,21 @@ var code2: string = `
     (step
       (set sum (+ sum i))
       (set i (+ i 1))))
-  (print sum))
+  (println sum))
 `;
 
 var code3: string = `
 (step
   (def fun (x) (* x 40))
   (set f fun)
-  (print (f (fun 10))))
+  (println (f (fun 10))))
 `;
 
 var code4: string = `
 (step
   (set x (lambda (y) (* y y)))
-  (print (x 500))
-  (print ((lambda (z) (* z 40)) 10)))
+  (println (x 500))
+  (println ((lambda (z) (* z 40)) 10)))
 `;
 
 var code5: string = `
@@ -75,13 +75,13 @@ var code5: string = `
 var code6: string = `
 (step
   (set arr (set-idx '(1 2 3 4 5) 2 100))
-  (print (map (lambda (x) (* x 10)) arr)))
+  (println (map (lambda (x) (* x 10)) arr)))
 `;
 
 var code7: string = `
 (step
   (set x 10)
-  (print x))
+  (println x))
 `;
 
 var factor: string = `
@@ -90,8 +90,8 @@ var factor: string = `
     (if (<= x 1)
       1
       (* x (factor (- x 1)))))
-  (print (factor 4))
-  (print (factor 5)))
+  (println (factor 4))
+  (println (factor 5)))
 `
 var fib = `
 (step
@@ -101,11 +101,11 @@ var fib = `
         (+ (fib (- n 1)) (fib (- n 2)))))))
   (def-var i 0)
   (while (< i 10) (step
-    (print (fib i))
+    (println (fib i))
     (set i (+ i 1)))))
 `;
 
-var fold = "(print (fold + 0 (map (lambda (x) (* x x)) (seq 10))))";
+var fold = "(println (fold + 0 (map (lambda (x) (* x x)) (seq 10))))";
 
 var codes = [
   code1,
