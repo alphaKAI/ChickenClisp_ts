@@ -35,6 +35,8 @@ import {DefvarOperator} from "./operator/DefvarOperator";
 import {SeqOperator} from "./operator/SeqOperator";
 import {FoldOperator} from "./operator/FoldOperator";
 import {LengthOperator} from "./operator/LengthOperator";
+import {CarOperator} from "./operator/CarOperator";
+import {CdrOperator} from "./operator/CdrOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -76,6 +78,8 @@ export class Engine {
     this.variables["seq"]     = new SeqOperator();
     this.variables["fold"]     = new FoldOperator();
     this.variables["length"]   = new LengthOperator();
+    this.variables["car"]      = new CarOperator();
+    this.variables["cdr"]      = new CdrOperator();
   }
 
   /*
