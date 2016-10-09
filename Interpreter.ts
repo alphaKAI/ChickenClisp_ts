@@ -35,7 +35,7 @@ export class Interpreter {
     var that = this;
     process.stdin.on('data', function(val){
       function e(): void {
-        if (that.checkBracket(buf.join()) && (buf.length != 0)) {
+        if (that.checkBracket(val) && (buf.length != 0)) {
           console.log(that.engine.eval(that.transpiler.transpile(buf.join())));
           buf = new Array<string>();
         }
