@@ -34,6 +34,7 @@ import {AsIVOperator} from "./operator/AsIVOperator";
 import {DefvarOperator} from "./operator/DefvarOperator";
 import {SeqOperator} from "./operator/SeqOperator";
 import {FoldOperator} from "./operator/FoldOperator";
+import {LengthOperator} from "./operator/LengthOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -74,6 +75,7 @@ export class Engine {
     this.variables["def-var"] = new DefvarOperator();
     this.variables["seq"]     = new SeqOperator();
     this.variables["fold"]     = new FoldOperator();
+    this.variables["length"]   = new LengthOperator();
   }
 
   /*
