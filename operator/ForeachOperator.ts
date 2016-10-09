@@ -1,17 +1,20 @@
 import {Engine} from "../Engine";
-import {IOperator, Operator} from "../operator/IOperator";
-import {ImmediateValue} from "../expression/ImmediateValue";
-import {IExpression} from "../expression/IExpression";
 import {Closure} from "../Closure";
+import {IExpression} from "../expression/IExpression";
+import {ImmediateValue} from "../expression/ImmediateValue";
+import {IOperator, Operator} from "../operator/IOperator";
 
-export class MapOperator extends Operator implements IOperator {
+export class ForeachOperator extends Operator implements IOperator {
+  /**
+   * call
+   */
   public call(engine: Engine, args: Array<any>): Object {
     var efunc: Object = engine.eval(<IExpression>args[0]);
-    var eargs1: any       = engine.eval(args[1]);
+    var eargs1: any   = engine.eval(args[1]);
 
     if (eargs1 instanceof Array) {
       var array: Array<any> = eargs1;
-      var ret:   Array<any>  = [];
+      var ret:   Array<any> = [];
 
       if (efunc instanceof Closure) {
         array.forEach((elem) => ret.push((<Closure>efunc).eval([elem])));
@@ -22,7 +25,7 @@ export class MapOperator extends Operator implements IOperator {
       return ret;
     } else {
         if (!(eargs1 instanceof ImmediateValue) && !(eargs1.value instanceof Array)) {
-          throw new Error("Map requires array and function as a Operator");
+          throw new Error("for-each requires array and function as a Operator");
         }
 
         var array: Array<any> = eargs1.value;
