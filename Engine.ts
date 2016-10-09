@@ -38,6 +38,7 @@ import {LengthOperator} from "./operator/LengthOperator";
 import {CarOperator} from "./operator/CarOperator";
 import {CdrOperator} from "./operator/CdrOperator";
 import {LoadOperator} from "./operator/LoadOperator";
+import {CondOperator} from "./operator/CondOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -77,11 +78,12 @@ export class Engine {
     this.variables["as-iv"]   = new AsIVOperator();
     this.variables["def-var"] = new DefvarOperator();
     this.variables["seq"]     = new SeqOperator();
-    this.variables["fold"]     = new FoldOperator();
-    this.variables["length"]   = new LengthOperator();
-    this.variables["car"]      = new CarOperator();
-    this.variables["cdr"]      = new CdrOperator();
-    this.variables["load"]      = new LoadOperator();
+    this.variables["fold"]    = new FoldOperator();
+    this.variables["length"]  = new LengthOperator();
+    this.variables["car"]     = new CarOperator();
+    this.variables["cdr"]     = new CdrOperator();
+    this.variables["load"]    = new LoadOperator();
+    this.variables["cond"]    = new CondOperator();
   }
 
   /*
