@@ -1,30 +1,45 @@
 import {Engine} from "../Engine";
 import {IOperator, Operator} from "../operator/IOperator";
 import {ImmediateValue} from "../expression/ImmediateValue";
-/*> (let ((i 1) (j 2))
-    (+ i j))
-3*/
+import {DynamicOperator} from "../operator/DynamicOperator";
+
 
 export class LetOperator extends Operator implements IOperator {
   /**
    * call
    */
   public call(engine: Engine, args: Array<any>): Object {
-    var binds: Object = args[0];
-    var body: Object = args[1];
-    var _engine = engine.clone();
+    if (!(args[0] instanceof Array)) {
+      var name: string = <string>args[0];
+      var binds: Object = args[1];
+      var body: Object  = args[2];
+      var _engine = engine.clone();
 
-    if (!(binds instanceof Array)) {
-      throw new Error("let requires a bind list");
+      var names: Array<string> = [];
+      var vars: Array<any>     = [];
+
+      (<Array<any>>binds).forEach(bind => {
+        var name: string = bind[0];
+        var val: Object  = bind[1];
+        names.push(name);
+        vars.push(val);
+      });
+
+      _engine.defineVariable(name, new DynamicOperator(names, body));
+      return (<IOperator>_engine.getVariable(name)).call(_engine, vars);
+    } else {
+      var binds: Object = args[0];
+      var body: Object = args[1];
+      var _engine = engine.clone();
+
+      (<Array<any>>binds).forEach(bind => {
+        var name: string = bind[0];
+        var val: Object  = bind[1];
+
+        _engine.defineVariable(name, val);
+      });
+
+      return _engine.eval(body);
     }
-
-    (<Array<any>>binds).forEach(bind => {
-      var name: string = bind[0];
-      var val: Object  = bind[1];
-
-      _engine.defineVariable(name, val);
-    });
-
-    return _engine.eval(body);
   }
 }
