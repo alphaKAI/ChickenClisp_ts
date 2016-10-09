@@ -136,7 +136,7 @@ export class Engine {
       return ret;
     }
 
-    ret = ret.eval(this);
+    ret = (<IExpression>ret).eval(this);
 
     if (ret instanceof Operator) {
       return new Closure(this, <IOperator>ret);
