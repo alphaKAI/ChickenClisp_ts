@@ -22,7 +22,7 @@ import {StepOperator} from "./operator/StepOperator";
 import {UntilOperator} from "./operator/UntilOperator";
 import {IfOperator} from "./operator/IfOperator";
 import {NotOperator, AndOperator, OrOperator} from "./operator/LogicOperator";
-import {PrintOperator} from "./operator/PrintOperator";
+import {PrintOperator, PrintlnOperator} from "./operator/PrintOperator";
 import {DeffunOperator} from "./operator/DeffunOperator";
 import {WhileOperator} from "./operator/WhileOperator";
 import {GetfunOperator} from "./operator/GetfunOperator";
@@ -42,6 +42,8 @@ import {CondOperator} from "./operator/CondOperator";
 import {AliasOperator} from "./operator/AliasOperator";
 import {TimeOperator} from "./operator/TimeOperator";
 import {LetOperator} from "./operator/LetOperator";
+import {ForeachOperator} from "./operator/ForeachOperator";
+import {RemoveOperator} from "./operator/RemoveOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -75,6 +77,7 @@ export class Engine {
     this.variables["||"]  = new OrOperator();
     this.variables["or"]  = this.variables["||"];
     this.variables["print"] = new PrintOperator();
+    this.variables["println"] = new PrintlnOperator();
     this.variables["def"]   = new DeffunOperator();
     this.variables["while"] = new WhileOperator();
     this.variables["get-fun"] = new GetfunOperator();
@@ -92,7 +95,9 @@ export class Engine {
     this.variables["cond"]    = new CondOperator();
     this.variables["alias"]   = new AliasOperator();
     this.variables["time"]    = new TimeOperator();
-    this.variables["let"]    = new LetOperator();
+    this.variables["let"]     = new LetOperator();
+    this.variables["for-each"] = new ForeachOperator();
+    this.variables["remove"]   = new RemoveOperator();
   }
 
   /*
