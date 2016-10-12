@@ -46,6 +46,7 @@ import {ForeachOperator} from "./operator/ForeachOperator";
 import {RemoveOperator} from "./operator/RemoveOperator";
 import {ConsOperator} from "./operator/ConsOperator";
 import {WhenOperator} from "./operator/WhenOperator";
+import {IsListOperator} from "./operator/IsListOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -102,6 +103,7 @@ export class Engine {
     this.variables["remove"]   = new RemoveOperator();
     this.variables["cons"]   = new ConsOperator();
     this.variables["when"]   = new WhenOperator();
+    this.variables["list?"]  = new IsListOperator();
   }
 
   /*
