@@ -45,6 +45,7 @@ import {LetOperator} from "./operator/LetOperator";
 import {ForeachOperator} from "./operator/ForeachOperator";
 import {RemoveOperator} from "./operator/RemoveOperator";
 import {ConsOperator} from "./operator/ConsOperator";
+import {WhenOperator} from "./operator/WhenOperator";
 /**
  * Script Engine of Orelang_TS
  */
@@ -100,6 +101,7 @@ export class Engine {
     this.variables["for-each"] = new ForeachOperator();
     this.variables["remove"]   = new RemoveOperator();
     this.variables["cons"]   = new ConsOperator();
+    this.variables["when"]   = new WhenOperator();
   }
 
   /*
