@@ -9,6 +9,14 @@ export class ConsOperator extends Operator implements IOperator {
     var car: Object = engine.eval(args[0]);
     var cdr: Object = engine.eval(args[1]);
 
-    return [car, cdr];
+    var ret: Array<any> = [car];
+
+    if (cdr instanceof Array) {
+      (<Array<any>>cdr).forEach(elem => ret.push(engine.eval(elem)));
+    } else {
+      ret.push(cdr);
+    }
+
+    return ret;
   }
 }
