@@ -17,8 +17,6 @@ export class CallOperator implements IExpression {
    */
   public eval(engine: Engine): Object {
     var closure: Closure = <Closure>engine.eval(this.operator);
-    if (closure != undefined) {
-      return closure.eval(this.args);
-    }
+    return closure.eval(this.args);
   }
 }
