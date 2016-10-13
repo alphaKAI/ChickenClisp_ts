@@ -27,8 +27,12 @@ export class LetOperator extends Operator implements IOperator {
 
       _engine.defineVariable(name, new DynamicOperator(names, body));
       var ret: Object = (<IOperator>_engine.getVariable(name)).call(_engine, vars);
-      if (ret == undefined) { return 0; }
-      else { return ret; }
+
+      if (ret == undefined) {
+        return 0;
+      } else {
+        return ret;
+      }
     } else {
       var binds: Object = args[0];
       var body: Object = args[1];
