@@ -20,7 +20,7 @@ export class PrintOperator extends Operator implements IOperator {
         process.stdout.write(item.join(" "))
         process.stdout.write(")");
       } else {
-        process.stdout.write(<string>item);
+        process.stdout.write(item.toString());
       }
     });
 
@@ -45,7 +45,8 @@ export class PrintlnOperator extends Operator implements IOperator {
         process.stdout.write(item.join(" "))
         process.stdout.write(")");
       } else {
-        process.stdout.write(<string>item);
+
+        process.stdout.write(item.toString());
       }
     });
 
