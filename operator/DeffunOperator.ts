@@ -7,7 +7,7 @@ export class DeffunOperator extends Operator implements IOperator {
    * call
    */
   public call(engine: Engine, args: Array<any>): Object {
-    var funcName: string   = String(engine.eval(args[0]));
+    var funcName: string   = <string>(args[0]);
     var funcArgs: string[] = <string[]>args[1];
     var funcBody: Object   = args[2];
 
