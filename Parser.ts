@@ -35,7 +35,7 @@ export class Parser {
         } else if (ch == ")") {
           return out;
         } else {
-          if (!isNaN(Number(ch))) {
+          if (!isNaN(Number(ch)) || (code[i + 1] && ch == "-" && !isNaN(Number(code[i + 1])))) {
             var tmp: string = "";
             var j = i;
 
@@ -101,4 +101,3 @@ export class Parser {
   }
 }
 
-//console.log("parsed -> ", Parser.parse(`(foo 12345 "abcdef" (abc hij) '(1 2 3 4 5 6 789))`));
