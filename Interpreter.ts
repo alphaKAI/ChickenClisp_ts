@@ -54,4 +54,35 @@ export class Interpreter {
       process.stdout.write("> ");
     });
   }
+
+  executer(code: string): any {
+    var buf: string = "";
+    var ret: any;
+    var that = this;
+
+    function e(ch: string): void {
+      if (that.checkBracket(ch) && buf.length != 0) {
+        var transpiled = that.transpiler.transpile(buf);
+        ret = that.engine.eval(transpiled);
+        buf = "";
+      }
+    }
+
+    code.split("\n").some(input => {
+      if (input == "exit" || input == "(exit)") {
+        return true;
+      }
+
+      input.split("").forEach(ch => {
+        if (ch == "\n") {
+          e(ch);
+        } else {
+          buf += ch;
+          e(ch);
+        }
+      })
+    });
+
+    return ret;
+  }
 }

@@ -13,10 +13,8 @@ if (process.argv.length == 3 && path.basename(process.argv[0]) == "node") {
   if (!fs.existsSync(fpath)) {
     console.log("No such file - " + fpath);
   } else {
-    var engine: Engine = new Engine();
-    var transpiler: Transpiler = new Transpiler();
-
-    engine.eval(transpiler.transpile(<string>fs.readFileSync(fpath).toString()));
+    var itpr = new Interpreter();
+    itpr.executer(<string>fs.readFileSync(fpath).toString());
   }
 } else if (process.argv.length == 2) {
   var itpr = new Interpreter();
