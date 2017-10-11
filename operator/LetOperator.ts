@@ -19,15 +19,14 @@ export class LetOperator extends Operator implements IOperator {
       var vars: Array<any>     = [];
 
       (<Array<any>>binds).forEach(bind => {
-        var name: string = bind[0];
+        var bname: string = bind[0];
         var val: Object  = bind[1];
-        names.push(name);
+        names.push(bname);
         vars.push(val);
       });
 
       _engine.defineVariable(name, new DynamicOperator(names, body));
       var ret: Object = (<IOperator>_engine.getVariable(name)).call(_engine, vars);
-
       if (ret == undefined) {
         return 0;
       } else {
