@@ -44,7 +44,11 @@ export class Parser {
               ++j;
             } while ((code[j] != " " && !isNaN(Number(code[j]))) || (code[j] == "." && code[j + 1] != undefined && !isNaN(Number(code[j + 1]))));
 
-            out.push(Number(tmp));
+            if (tmp == "-") {
+              out.push(tmp);
+            } else {
+              out.push(Number(tmp));
+            }
 
             i = j-1;
           } else if (ch == "\"" || ch == "\'") {
